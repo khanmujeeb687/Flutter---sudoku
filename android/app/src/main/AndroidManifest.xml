@@ -9,6 +9,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="sudokutable"
         android:icon="@mipmap/launcher_icon">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4122686746724709~1133506089"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

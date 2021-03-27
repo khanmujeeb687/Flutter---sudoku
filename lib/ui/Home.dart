@@ -1,10 +1,12 @@
 
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:simple_animations/simple_animations/multi_track_tween.dart';
+import 'package:sudokutable/ads/ads_controller.dart';
 import 'package:sudokutable/games/easy/GameMenu.dart';
 import 'package:sudokutable/games/medium/GameMenu.dart';
 import 'package:sudokutable/ui/Widgets/Buttons.dart';
@@ -17,13 +19,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  AdmobBannerSize bannerSize;
+
   @override
   void initState() {
-
-    // TODO: implement initState
+    bannerSize = AdmobBannerSize.BANNER;
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,19 @@ class _HomeState extends State<Home> {
                mainAxisSize: MainAxisSize.max,
                mainAxisAlignment: MainAxisAlignment.end,
                children: <Widget>[
+                 Container(
+                   margin: EdgeInsets.only(bottom: 20.0),
+                   child: AdmobBanner(
+                     adUnitId: getBannerAdUnitId(),
+                     adSize: bannerSize,
+                     listener: (AdmobAdEvent event,
+                         Map<String, dynamic> args) {
+                       print(args.toString());
+                     },
+                     onBannerCreated: (AdmobBannerController controller) {
+                     },
+                   ),
+                 ),
                  Text("Sudo king" ,style: GoogleFonts.muli(color: Colors.black54,fontWeight: FontWeight.w300,
                  fontSize: 35,letterSpacing: 2
                  ),),
@@ -96,6 +111,12 @@ class _HomeState extends State<Home> {
            )
       ),
     );
+  }
+
+
+
+  String getBannerAdUnitId() {
+    return AddsController.unitId;
   }
 
 }

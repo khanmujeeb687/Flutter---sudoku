@@ -32,6 +32,8 @@ dependencies:
   flutter_colorpicker: ^0.4.0
   toast: ^0.1.5
   font_awesome_flutter: ^8.5.0
+  admob_flutter: ^1.0.1
+
 
 
 
