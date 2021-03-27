@@ -34,7 +34,20 @@ class _GameMenuMediumState extends State<GameMenuMedium> {
   int hr=0;
   int min=0;
   int sec=0;
-  void changeColor(Color color) {
+
+  pickColorFromLocal()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(prefs.containsKey('fav_color')){
+      bgcolor=Color(prefs.getInt('fav_color'));
+    }
+  }
+
+  savColorToLocal()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('fav_color', bgcolor.value);
+  }
+
+  void changeColor(Color color) async{
     setState(() => bgcolor = color);
   }
 
@@ -44,9 +57,10 @@ class _GameMenuMediumState extends State<GameMenuMedium> {
     Track("color2").add(Duration(seconds: 4),
         ColorTween(begin: Color(0xffA83279), end: Colors.blue.shade600))
   ]);
+
   @override
   void initState() {
-
+    pickColorFromLocal();
     board.load().then((loaded) {
       if(loaded){_settimer();}
       setState(() {
@@ -128,7 +142,7 @@ _createtimer();
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Text(!win ? "Sudoku Cash" : "You won!",
+                      Text(!win ? "Sudo king" : "You won!",
                           style: GoogleFonts.lato(
                               fontSize:25, color: win ? Colors.green : grey),
                 ), Text(win?"":"  Hard",
@@ -467,9 +481,8 @@ _createtimer();
                                                     });
                                                   }
                                                   else {
-
                                                     setState(() {
-                                                      if(focussed.hitnts.isNotEmpty){
+                                                      if(focussed?.hitnts.isNotEmpty){
                                                         for(int m=0;m<focussed.hitnts.length;m++){
                                                           focussed.hitnts[m]=0;
                                                         }
@@ -729,6 +742,13 @@ _createtimer();
 
   }
 
+  @override
+  void dispose() {
+    savColorToLocal();
+    _timer?.cancel();
+    super.dispose();
+  }
+
   void _resetboard() {
     _unlightup();
     for(int i=0;i<Board.boardBase;i++){
@@ -836,15 +856,4 @@ class LifecycleHandler extends WidgetsBindingObserver {
     }
   }
 
-//  @override
-//  void didChangeLocale(Locale locale)
-
-//  @override
-//  void didChangeTextScaleFactor()
-
-//  @override
-//  void didChangeMetrics();
-
-//  @override
-//  Future<bool> didPushRoute(String route)
 }

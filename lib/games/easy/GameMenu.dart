@@ -45,8 +45,25 @@ class _GameMenuEasyState extends State<GameMenuEasy> {
     Track("color2").add(Duration(seconds: 4),
         ColorTween(begin: Color(0xffA83279), end: Colors.blue.shade600))
   ]);
+
+
+  pickColorFromLocal()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if(prefs.containsKey('fav_color')){
+      bgcolor=Color(prefs.getInt('fav_color'));
+    }
+  }
+
+  savColorToLocal()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt('fav_color', bgcolor.value);
+  }
+
+
+
   @override
   void initState() {
+    pickColorFromLocal();
 
     board.load().then((loaded) {
       if(loaded){_settimer();}
@@ -128,7 +145,7 @@ _createtimer();
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(!win ? "Sudoku Cash" : "Congratulations, you won!",
+                      Text(!win ? "Sudo king" : "You won!",
                           style: GoogleFonts.lato(
                               fontSize: 25, color: win ? Colors.green : grey),
                 ), Text("  Easy",
@@ -469,7 +486,7 @@ _createtimer();
                                                   else {
 
                                                     setState(() {
-                                                      if(focussed.hitnts.isNotEmpty){
+                                                      if(focussed?.hitnts.isNotEmpty){
                                                         for(int m=0;m<focussed.hitnts.length;m++){
                                                           focussed.hitnts[m]=0;
                                                         }
@@ -811,10 +828,8 @@ _createtimer();
 
   @override
   void dispose() {
-    if(_timer!=null){
-      _timer.cancel();
-    }
-    // TODO: implement dispose
+    savColorToLocal();
+    _timer?.cancel();
     super.dispose();
   }
 

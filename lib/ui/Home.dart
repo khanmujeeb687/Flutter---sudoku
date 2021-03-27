@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                mainAxisSize: MainAxisSize.max,
                mainAxisAlignment: MainAxisAlignment.end,
                children: <Widget>[
-                 Text("Sudoku" ,style: GoogleFonts.muli(color: Colors.limeAccent,fontWeight: FontWeight.w300,
+                 Text("Sudo king" ,style: GoogleFonts.muli(color: Colors.black54,fontWeight: FontWeight.w300,
                  fontSize: 35,letterSpacing: 2
                  ),),
                  Column(
@@ -84,14 +84,14 @@ class _HomeState extends State<Home> {
                    height: MediaQuery.of(context).size.height/5,
                    width: MediaQuery.of(context).size.width,
                    alignment: Alignment.bottomCenter,
-                   child: Text("From XYZ  Softwares Ltd.",style: GoogleFonts.muli(color:
+                   child: Text("From Mintech Softwares",style: GoogleFonts.muli(color:
                    Colors.white
                    ),),
                  )
                ],
              ),
              decoration: BoxDecoration(
-                color: Colors.grey[400]
+                color: Colors.black38
              ),
            )
       ),
