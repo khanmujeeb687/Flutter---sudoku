@@ -9,6 +9,7 @@ import 'package:simple_animations/simple_animations/multi_track_tween.dart';
 import 'package:sudokutable/ads/ads_controller.dart';
 import 'package:sudokutable/games/easy/GameMenu.dart';
 import 'package:sudokutable/games/medium/GameMenu.dart';
+import 'package:sudokutable/news/views/homepage.dart';
 import 'package:sudokutable/ui/Widgets/Buttons.dart';
 
 
@@ -37,73 +38,90 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         body:Container(
              height: MediaQuery.of(context).size.height,
-             alignment: Alignment.topCenter,
+             alignment: Alignment.bottomCenter,
              padding: EdgeInsets.all(40),
-             child:Column(
-               mainAxisSize: MainAxisSize.max,
-               mainAxisAlignment: MainAxisAlignment.end,
-               children: <Widget>[
-                 Container(
-                   margin: EdgeInsets.only(bottom: 20.0),
-                   child: AdmobBanner(
-                     adUnitId: getBannerAdUnitId(),
-                     adSize: bannerSize,
-                     listener: (AdmobAdEvent event,
-                         Map<String, dynamic> args) {
-                       print(args.toString());
-                     },
-                     onBannerCreated: (AdmobBannerController controller) {
-                     },
-                   ),
-                 ),
-                 Text("Sudo king" ,style: GoogleFonts.muli(color: Colors.black54,fontWeight: FontWeight.w300,
-                 fontSize: 35,letterSpacing: 2
-                 ),),
-                 Column(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   mainAxisSize: MainAxisSize.max,
-                   children: <Widget>[
-                     SizedBox(height: 60,),
-                     MyButton(
-                       tag:"easy",
-                       color: 1,
-                       mytext: Text("Easy",style: GoogleFonts.lato(fontSize: 30),),
-                       myicon: Icon(FontAwesomeIcons.playstation),
-                       method: (){
-
-                         Navigator.push(context, MaterialPageRoute(
-                             builder: (context){
-                               return GameMenuEasy();
-                             }
-                         ));
+             child:SingleChildScrollView(
+               child: Column(
+                 mainAxisSize: MainAxisSize.max,
+                 mainAxisAlignment: MainAxisAlignment.end,
+                 children: <Widget>[
+                   Container(
+                     margin: EdgeInsets.only(bottom: 20.0),
+                     child: AdmobBanner(
+                       adUnitId: getBannerAdUnitId(),
+                       adSize: bannerSize,
+                       listener: (AdmobAdEvent event,
+                           Map<String, dynamic> args) {
+                         print(args.toString());
+                       },
+                       onBannerCreated: (AdmobBannerController controller) {
                        },
                      ),
-                     SizedBox(height: 30,),
-                     MyButton(
-                       tag:"hard",
-                       color: 2,
-                       mytext: Text("Hard",style: GoogleFonts.lato(fontSize: 30),),
-                       myicon: Icon(FontAwesomeIcons.playstation),
-                       method: (){
-
-                         Navigator.push(context, MaterialPageRoute(
-                             builder: (context){
-                               return GameMenuMedium();
-                             }
-                         ));
-                       },
-                     )
-                   ],
-                 ),
-                 Container(
-                   height: MediaQuery.of(context).size.height/5,
-                   width: MediaQuery.of(context).size.width,
-                   alignment: Alignment.bottomCenter,
-                   child: Text("From Mintech Softwares",style: GoogleFonts.muli(color:
-                   Colors.white
+                   ),
+                   Text("Sudo king" ,style: GoogleFonts.muli(color: Colors.black54,fontWeight: FontWeight.w300,
+                   fontSize: 35,letterSpacing: 2
                    ),),
-                 )
-               ],
+                   Column(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     mainAxisSize: MainAxisSize.max,
+                     children: <Widget>[
+                       SizedBox(height: 60,),
+                       MyButton(
+                         tag:"easy",
+                         color: 1,
+                         mytext: Text("Easy",style: GoogleFonts.lato(fontSize: 30),),
+                         myicon: Icon(FontAwesomeIcons.gamepad),
+                         method: (){
+
+                           Navigator.push(context, MaterialPageRoute(
+                               builder: (context){
+                                 return GameMenuEasy();
+                               }
+                           ));
+                         },
+                       ),
+                       SizedBox(height: 30,),
+                       MyButton(
+                         tag:"hard",
+                         color: 2,
+                         mytext: Text("Hard",style: GoogleFonts.lato(fontSize: 30),),
+                         myicon: Icon(FontAwesomeIcons.gamepad),
+                         method: (){
+
+                           Navigator.push(context, MaterialPageRoute(
+                               builder: (context){
+                                 return GameMenuMedium();
+                               }
+                           ));
+                         },
+                       ),
+                       SizedBox(height: 30,),
+                       MyButton(
+                         tag:"news",
+                         color: 1,
+                         mytext: Text("Trending News",style: GoogleFonts.lato(fontSize: 25),),
+                         myicon: Icon(FontAwesomeIcons.newspaper),
+                         method: (){
+
+                           Navigator.push(context, MaterialPageRoute(
+                               builder: (context){
+                                 return HomePage();
+                               }
+                           ));
+                         },
+                       )
+                     ],
+                   ),
+                   Container(
+                     height: MediaQuery.of(context).size.height/5,
+                     width: MediaQuery.of(context).size.width,
+                     alignment: Alignment.bottomCenter,
+                     child: Text("From Mintech Softwares",style: GoogleFonts.muli(color:
+                     Colors.white
+                     ),),
+                   )
+                 ],
+               ),
              ),
              decoration: BoxDecoration(
                 color: Colors.black38

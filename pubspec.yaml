@@ -33,6 +33,9 @@ dependencies:
   toast: ^0.1.5
   font_awesome_flutter: ^8.5.0
   admob_flutter: ^1.0.1
+  cached_network_image: ^2.0.0
+  webview_flutter: ^0.3.19+9
+
 
 
 

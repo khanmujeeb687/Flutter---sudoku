@@ -27,53 +27,47 @@ class _MyButtonState extends State<MyButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ControlledAnimation(
-        playback: Playback.MIRROR,
-        tween: tween,
-        duration: tween.duration,
-        builder: (context,animation){
-          return Hero(
-            tag: widget.tag,
-            child: Material(
-              color: Colors.transparent,
-              child: Card(
-                elevation: 20,
-                shape: RoundedRectangleBorder(
+    return GestureDetector(
+      onTap: widget.method!=null?widget.method:(){},
+      child: ControlledAnimation(
+          playback: Playback.MIRROR,
+          tween: tween,
+          duration: tween.duration,
+          builder: (context,animation){
+            return Card(
+              elevation: 20,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
+                  color: (){
+                    if(widget.color==1 || widget.color==null){
+                      return animation['color1'];
+                    }
+                    else {
+                      return animation['color2'];
+                    }
+                  }()
                 ),
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: (){
-                      if(widget.color==1 || widget.color==null){
-                        return animation['color1'];
-                      }
-                      else {
-                        return animation['color2'];
-                      }
-                    }()
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: widget.method!=null?widget.method:(){},
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          widget.myicon!=null?widget.myicon:Container(height: 0,width: 0,),
-                          SizedBox(width: 4,),
-                          widget.mytext!=null?widget.mytext:Container(height: 0,width: 0,),
-                        ],
-                      ),
-                    ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      widget.myicon!=null?widget.myicon:Container(height: 0,width: 0,),
+                      SizedBox(width: 15,),
+                      widget.mytext!=null?widget.mytext:Container(height: 0,width: 0,),
+                    ],
                   ),
                 ),
               ),
-            ),
-          );
-        });
+            );
+          }),
+    );
   }
 }
