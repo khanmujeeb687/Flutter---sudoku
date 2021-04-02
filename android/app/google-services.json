@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864226626328:android:40941f4c57a0864d1e6c6d",
+        "android_client_info": {
+          "package_name": "com.mintech.sudokutable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864226626328-0vh9jtj317g7n7hftnjvk8pfkjmgapgd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFrSO9Q7c1zP_kYJIZJ2tHXkVddVWNHxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864226626328-0vh9jtj317g7n7hftnjvk8pfkjmgapgd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
