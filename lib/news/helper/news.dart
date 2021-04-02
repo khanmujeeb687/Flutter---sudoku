@@ -12,7 +12,7 @@ class News {
 
   Future<void> getNews() async{
 
-    String url = "http://newsapi.org/v2/top-headlines?country=in&excludeDomains=stackoverflow.com&sortBy=publishedAt&language=en&apiKey=${apiKey}";
+    String url = "http://sudoku-node.herokuapp.com/news/normal";
 
     var response = await http.get(Uri.parse(url));
 
@@ -51,7 +51,7 @@ class NewsForCategorie {
   Future<void> getNewsForCategory(String category) async{
 
     /*String url = "http://newsapi.org/v2/everything?q=$category&apiKey=${apiKey}";*/
-    String url = "http://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=${apiKey}";
+    String url = "http://sudoku-node.herokuapp.com/news/$category";
 
     var response = await http.get(Uri.parse(url));
 
