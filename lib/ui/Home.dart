@@ -11,6 +11,7 @@ import 'package:sudokutable/games/easy/GameMenu.dart';
 import 'package:sudokutable/games/medium/GameMenu.dart';
 import 'package:sudokutable/news/views/homepage.dart';
 import 'package:sudokutable/ui/Widgets/Buttons.dart';
+import 'package:sudokutable/utils/analytics_util.dart';
 
 
 class Home extends StatefulWidget {
@@ -102,7 +103,7 @@ class _HomeState extends State<Home> {
                          mytext: Text("Trending News",style: GoogleFonts.lato(fontSize: 25),),
                          myicon: Icon(FontAwesomeIcons.newspaper),
                          method: (){
-
+                           AnalyticsUtil.log(AnalyticsUtil.NEWS_CLICKED);
                            Navigator.push(context, MaterialPageRoute(
                                builder: (context){
                                  return HomePage();

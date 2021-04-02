@@ -19,24 +19,20 @@ class _ArticleViewState extends State<ArticleView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Flutter",
-              style:
-              TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
-            ),
-            Text(
               "News",
-              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
             )
           ],
         ),
         actions: <Widget>[
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Icon(Icons.share,))
+              child: Icon(Icons.share,color: Colors.blueGrey,))
         ],
         backgroundColor: Colors.transparent,
         elevation: 0.0,
